@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 import MyContext from "../context/MyContext";
 
 const Form = () => {
@@ -6,6 +7,7 @@ const Form = () => {
 
 	const [data, setData] = useState(
 		{
+			id: '',
 			name: "",
 			email: "",
 			phone: "",
@@ -23,6 +25,9 @@ const Form = () => {
 
 	const handleForm = (e) => {
 		e.preventDefault();
+
+		data.id = uuidv4();
+
 		setUserInfo([...userInfo, data]);
 	};
 

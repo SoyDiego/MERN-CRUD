@@ -1,7 +1,15 @@
-import React from "react";
+import React, {useContext} from "react";
+
+import MyContext from "../context/MyContext";
 
 const Contact = ({ user }) => {
-	const { name, email, phone } = user;
+	const { userInfo, setUserInfo } = useContext(MyContext);
+
+	const { id, name, email, phone } = user;
+
+	const handleDelete = (id) => {
+		setUserInfo(userInfo.filter((user) => user.id !== id))
+	};
 
 	return (
 		<>
@@ -13,7 +21,10 @@ const Contact = ({ user }) => {
 					<button type="button" className="btn btn-outline-warning">
 						Edit
 					</button>
-					<button type="button" className="btn btn-outline-danger">
+					<button
+						type="button"
+						className="btn btn-outline-danger"
+						onClick={() => handleDelete(id)}>
 						Delete
 					</button>
 				</div>
