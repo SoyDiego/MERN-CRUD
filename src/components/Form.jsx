@@ -1,18 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import MyContext from "../context/MyContext";
 
 const Form = () => {
-	const { userInfo, setUserInfo } = useContext(MyContext);
+	const { userInfo, setUserInfo, editForm, editData } = useContext(MyContext);
 
-	const [data, setData] = useState(
-		{
-			id: '',
-			name: "",
-			email: "",
-			phone: "",
-		},
-	);
+	const [data, setData] = useState({
+		id: "",
+		name: "",
+		email: "",
+		phone: "",
+	});
+
+	useEffect(() => {
+		if (editData) {
+			setData({
+				...data,
+				id: editData.id,
+				name: editData.name,
+				email: editData.email,
+				phone: editData.phone,
+			});
+		}//eslint-disable-next-line
+	}, [editData]);
 
 	const { name, email, phone } = data;
 
@@ -26,9 +36,27 @@ const Form = () => {
 	const handleForm = (e) => {
 		e.preventDefault();
 
-		data.id = uuidv4();
+		if (editData) {
+			const edited = userInfo.map((user) => {
+				if (user.id === editData.id) {
+					return data;
+				}
+				return user;
+			});
 
-		setUserInfo([...userInfo, data]);
+			console.log(edited);
+			setUserInfo(edited);
+		} else {
+			data.id = uuidv4();
+			setUserInfo([...userInfo, data]);
+		}
+
+		setData({
+			id: "",
+			name: "",
+			email: "",
+			phone: "",
+		});
 	};
 
 	return (
@@ -70,7 +98,7 @@ const Form = () => {
 			</div>
 
 			<button type="submit" className="btn btn-primary">
-				Add Contact
+				{editForm ? "Edit Contact" : "Add Contact"}
 			</button>
 		</form>
 	);

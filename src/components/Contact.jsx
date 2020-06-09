@@ -3,12 +3,20 @@ import React, {useContext} from "react";
 import MyContext from "../context/MyContext";
 
 const Contact = ({ user }) => {
-	const { userInfo, setUserInfo } = useContext(MyContext);
+	const { userInfo, setUserInfo, setEditForm, setEditData } = useContext(MyContext);
 
 	const { id, name, email, phone } = user;
 
+	const handleEdit = (id) => {
+		setEditForm(true)
+		const editUser = userInfo.find((user) => user.id === id);
+		setEditData(editUser)
+
+	}
+
 	const handleDelete = (id) => {
-		setUserInfo(userInfo.filter((user) => user.id !== id))
+		const deleteUser = userInfo.filter((user) => user.id !== id);
+		setUserInfo(deleteUser)
 	};
 
 	return (
@@ -18,7 +26,7 @@ const Contact = ({ user }) => {
 				<h5>{email}</h5>
 				<span>{phone}</span>
 				<div className="col-md-12 d-flex justify-content-between mt-4">
-					<button type="button" className="btn btn-outline-warning">
+					<button type="button" className="btn btn-outline-warning" onClick={() => handleEdit(id)}>
 						Edit
 					</button>
 					<button

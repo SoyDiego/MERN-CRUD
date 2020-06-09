@@ -5,12 +5,18 @@ import MyContext from "./context/MyContext";
 
 function App() {
 	const [userInfo, setUserInfo] = useState([]);
+	const [editForm, setEditForm] = useState(false);
+	const [editData, setEditData] = useState(null);
 
 	return (
 		<MyContext.Provider
 			value={{
 				userInfo,
 				setUserInfo,
+				editForm,
+				setEditForm,
+				editData,
+				setEditData,
 			}}>
 			<div className="container">
 				<div className="row text-center">
@@ -21,9 +27,9 @@ function App() {
 						<Form />
 					</div>
 					<div className="col-md-8 bg-secondary d-flex flex-wrap py-4 justify-content-center align-items-center">
-						{userInfo.map((user) => 
-							<Contact key={user.id} user={user}/>
-						)}
+						{userInfo.map((user) => (
+							<Contact key={user.id} user={user} />
+						))}
 					</div>
 				</div>
 			</div>
