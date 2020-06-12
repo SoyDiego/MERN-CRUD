@@ -1,23 +1,20 @@
-import React, {useContext} from "react";
-
-import MyContext from "../context/MyContext";
+import React from "react";
 
 const Contact = ({ user }) => {
-	const { userInfo, setUserInfo, setEditForm, setEditData } = useContext(MyContext);
 
-	const { id, name, email, phone } = user;
+	const { name, email, phone } = user;
 
-	const handleEdit = (id) => {
-		setEditForm(true)
-		const editUser = userInfo.find((user) => user.id === id);
-		setEditData(editUser)
+	// const handleEdit = (id) => {
+	// 	setEditForm(true)
+	// 	const editUser = userInfo.find((user) => user.id === id);
+	// 	setEditData(editUser)
 
-	}
+	// }
 
-	const handleDelete = (id) => {
-		const deleteUser = userInfo.filter((user) => user.id !== id);
-		setUserInfo(deleteUser)
-	};
+	// const handleDelete = (id) => {
+	// 	const deleteUser = userInfo.filter((user) => user.id !== id);
+	// 	setUserInfo(deleteUser)
+	// };
 
 	return (
 		<>
@@ -26,15 +23,15 @@ const Contact = ({ user }) => {
 				<h5>{email}</h5>
 				<span>{phone}</span>
 				<div className="col-md-12 d-flex justify-content-between mt-4">
-					<button type="button" className="btn btn-outline-warning" onClick={() => handleEdit(id)}>
+					{/* <button type="button" className="btn btn-outline-warning" onClick={() => handleEdit(id)}>
 						Edit
-					</button>
-					<button
+					</button> */}
+					{/* <button
 						type="button"
 						className="btn btn-outline-danger"
 						onClick={() => handleDelete(id)}>
 						Delete
-					</button>
+					</button> */}
 				</div>
 			</div>
 		</>

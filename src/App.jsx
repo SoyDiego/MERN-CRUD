@@ -1,23 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "./components/Form";
-import Contact from "./components/Contact";
-import MyContext from "./context/MyContext";
+import ContactList from "./components/ContactList";
+import MyContextState from "./context/MyContextState";
 
 function App() {
-	const [userInfo, setUserInfo] = useState([]);
-	const [editForm, setEditForm] = useState(false);
-	const [editData, setEditData] = useState(null);
-
 	return (
-		<MyContext.Provider
-			value={{
-				userInfo,
-				setUserInfo,
-				editForm,
-				setEditForm,
-				editData,
-				setEditData,
-			}}>
+		<MyContextState>
 			<div className="container">
 				<div className="row text-center">
 					<div className="col-md-12 my-3">
@@ -27,13 +15,11 @@ function App() {
 						<Form />
 					</div>
 					<div className="col-md-8 bg-secondary d-flex flex-wrap py-4 justify-content-center align-items-center">
-						{userInfo.map((user) => (
-							<Contact key={user.id} user={user} />
-						))}
+						<ContactList/>
 					</div>
 				</div>
 			</div>
-		</MyContext.Provider>
+		</MyContextState>
 	);
 }
 
