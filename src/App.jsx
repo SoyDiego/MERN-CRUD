@@ -14,7 +14,7 @@ function App() {
 					<div className="col-md-4 bg-secondary d-flex flex-column align-items-center">
 						<Form />
 					</div>
-					<div className="col-md-8 bg-secondary d-flex flex-wrap py-4 justify-content-center align-items-center">
+					<div className="col-md-8 bg-secondary">
 						<ContactList/>
 					</div>
 				</div>

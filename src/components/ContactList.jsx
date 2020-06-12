@@ -6,7 +6,7 @@ const ContactList = () => {
 	const { users } = useContext(MyContext);
 
 	return (
-		<div>
+		<div className="col-md-12 d-flex flex-wrap py-4 justify-content-center align-items-center">
 			{users.map((user) => (
 				<Contact key={user.id} user={user} />
 			))}

@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useContext}from "react";
+import MyContext from "../context/MyContext";
+
 
 const Contact = ({ user }) => {
+
+	const { deleteUser } = useContext(MyContext);
 
 	const { name, email, phone } = user;
 
@@ -11,10 +15,9 @@ const Contact = ({ user }) => {
 
 	// }
 
-	// const handleDelete = (id) => {
-	// 	const deleteUser = userInfo.filter((user) => user.id !== id);
-	// 	setUserInfo(deleteUser)
-	// };
+	const handleDelete = (id) => {
+		deleteUser(id)
+	};
 
 	return (
 		<>
@@ -26,12 +29,12 @@ const Contact = ({ user }) => {
 					{/* <button type="button" className="btn btn-outline-warning" onClick={() => handleEdit(id)}>
 						Edit
 					</button> */}
-					{/* <button
+					<button
 						type="button"
 						className="btn btn-outline-danger"
-						onClick={() => handleDelete(id)}>
+						onClick={() => handleDelete(user.id)}>
 						Delete
-					</button> */}
+					</button>
 				</div>
 			</div>
 		</>
