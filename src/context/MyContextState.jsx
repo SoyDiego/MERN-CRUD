@@ -1,11 +1,12 @@
 import React, { useReducer } from "react";
 import MyContext from "./MyContext";
 import myContextReducer from "./myContextReducer";
-import { ADD_USER, DELETE_USER } from "../types";
+import { ADD_USER, EDIT_USER, DELETE_USER, SELECTED_USER} from "../types";
 
 const MyContextState = (props) => {
 	const initialState = {
 		users: [],
+		user: null
 	};
 
 	const [state, dispatch] = useReducer(myContextReducer, initialState);
@@ -17,10 +18,24 @@ const MyContextState = (props) => {
 		});
 	};
 
+	const editUser = (user) => {
+		dispatch({
+			type: EDIT_USER,
+			payload: user
+		})
+	}
+
 	const deleteUser = (id) => {
 		dispatch({
 			type: DELETE_USER,
 			payload: id
+		})
+	}
+
+	const selectedUser = (user) => {
+		dispatch({
+			type: SELECTED_USER,
+			payload: user
 		})
 	}
 
@@ -29,6 +44,8 @@ const MyContextState = (props) => {
 			value={{
 				...state, 
 				addUser,
+				editUser,
+				selectedUser,
 				deleteUser
 			}}>
 			{props.children}

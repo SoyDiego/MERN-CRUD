@@ -4,16 +4,14 @@ import MyContext from "../context/MyContext";
 
 const Contact = ({ user }) => {
 
-	const { deleteUser } = useContext(MyContext);
+	const { selectedUser, deleteUser } = useContext(MyContext);
 
-	const { name, email, phone } = user;
+	const {id, name, email, phone } = user;
 
-	// const handleEdit = (id) => {
-	// 	setEditForm(true)
-	// 	const editUser = userInfo.find((user) => user.id === id);
-	// 	setEditData(editUser)
+	const handleEdit  = () => {
+		selectedUser(user)
 
-	// }
+	}
 
 	const handleDelete = (id) => {
 		deleteUser(id)
@@ -26,13 +24,13 @@ const Contact = ({ user }) => {
 				<h5>{email}</h5>
 				<span>{phone}</span>
 				<div className="col-md-12 d-flex justify-content-between mt-4">
-					{/* <button type="button" className="btn btn-outline-warning" onClick={() => handleEdit(id)}>
+					<button type="button" className="btn btn-outline-warning" onClick={handleEdit}>
 						Edit
-					</button> */}
+					</button>
 					<button
 						type="button"
 						className="btn btn-outline-danger"
-						onClick={() => handleDelete(user.id)}>
+						onClick={() => handleDelete(id)}>
 						Delete
 					</button>
 				</div>
